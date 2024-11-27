@@ -4,7 +4,9 @@ import { type NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
     try {   
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({
+            args: ['--no-sandbox']
+        });
         const page = await browser.newPage();
         await page.goto('https://www.google.com');
         const content = await page.content();
