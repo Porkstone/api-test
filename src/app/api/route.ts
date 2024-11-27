@@ -10,6 +10,6 @@ export async function GET(req: NextRequest) {
         const content = await page.content();
         return NextResponse.json({ content });
     } catch (error) {
-        return NextResponse.json({ error: 'Failed to fetch data' }, { status: 500 });
+        return NextResponse.json({ error: error instanceof Error ? error.message : 'An unknown error occurred' }, { status: 500 });
     }
 }
